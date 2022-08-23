@@ -1,3 +1,3 @@
-import printIt from './script.js';
+import UI from './modules/UI.js';
 
-printIt('ABsC');
+const myUI = UI();

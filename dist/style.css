@@ -1,0 +1,151 @@
+:root {
+    font-size: 10px;
+    --main-color: #950740;
+    --sec-color: #c3073f;
+    --third-color: #4e4e50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1d;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem auto;
+    gap: 4rem;
+    padding: 2rem;
+}
+
+.selections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.game-type {
+    background-color: var(--third-color);
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    width: 42rem;
+    cursor: pointer;
+}
+
+.game-type:hover {
+    background-color: #818181;
+}
+
+.player-settings {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 42rem;
+}
+
+.player-1,
+.player-2 {
+    display: flex;
+    background-color: var(--main-color);
+    padding: 0.5rem 2rem;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 1rem;
+    width: 20rem;
+}
+
+.player-1 span,
+.player-2 span {
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.player-1-icon,
+.player-2-icon {
+    background-color: var(--third-color);
+    padding: 0.5rem 2rem;
+    color: #fff;
+    border: 1px solid #1a1a1d;
+    font-size: 1.6rem;
+    cursor: pointer;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-1.active,
+.player-2.active {
+    background-color: var(--sec-color);
+}
+
+.player-1-icon:hover,
+.player-2-icon:hover {
+    background-color: #818181;
+}
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    cursor: pointer;
+}
+
+.square {
+    border: 4px solid var(--main-color);
+    width: 14rem;
+    height: 14rem;
+    display: flex;
+}
+
+/* MAKING EQUAL BORDERS */
+.square-0-1,
+.square-1-1,
+.square-2-1 {
+    border-right: none;
+    border-left: none;
+}
+
+.square-1-0,
+.square-1-1,
+.square-1-2 {
+    border-top: none;
+    border-bottom: none;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-size: 6rem;
+}
+
+/* DISABLING TEXT FOCUS */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.hidden {
+    visibility: hidden;
+}
