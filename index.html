@@ -1,12 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="main.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="overlay hidden">
+            <p class="winner-text"></p>
+            <button class="return">Return</button>
+        </div>
+
+        <div class="main-container noselect">
+            <div class="selections">
+                <div class="game-type-selection">
+                    <button class="game-type">Player vs Player</button>
+                </div>
+
+                <div class="player-settings">
+                    <div class="player-1 active player">
+                        <span class="player-1-name">Player 1</span>
+                        <button class="player-1-icon icon">X</button>
+                    </div>
+
+                    <div class="player-2 player">
+                        <span class="player-2-name">Player 2</span>
+                        <button class="player-2-icon icon">O</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-board">
+                <div class="square-0-0 square">
+                    <span class="span-0-0 noselect"></span>
+                </div>
+                <div class="square-0-1 square">
+                    <span class="span-0-1 noselect"></span>
+                </div>
+                <div class="square-0-2 square">
+                    <span class="span-0-2 noselect"></span>
+                </div>
+                <div class="square-1-0 square">
+                    <span class="span-1-0 noselect"></span>
+                </div>
+                <div class="square-1-1 square">
+                    <span class="span-1-1 noselect"></span>
+                </div>
+                <div class="square-1-2 square">
+                    <span class="span-1-2 noselect"></span>
+                </div>
+                <div class="square-2-0 square">
+                    <span class="span-2-0 noselect"></span>
+                </div>
+                <div class="square-2-1 square">
+                    <span class="span-2-1 noselect"></span>
+                </div>
+                <div class="square-2-2 square">
+                    <span class="span-2-2 noselect"></span>
+                </div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
 </html>
