@@ -1,3 +1,1 @@
-import UI from './modules/UI.js';
-
-const myUI = UI();
+import UI from './modules/UI';

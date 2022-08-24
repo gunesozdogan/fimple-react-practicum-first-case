@@ -1,38 +1,46 @@
-export default UI;
-
 import gameBoard from './game.js';
 
-function UI() {
-    const myGameBoard = gameBoard();
-    const squares = [...document.querySelectorAll('.square')];
+const UI = (function () {
+    const myGameBoard = gameBoard;
+    const squares = [...document.querySelectorAll('.icon-text')];
     const playerIconBtn = [...document.querySelectorAll('.icon')];
     const gameTypeBtn = document.querySelector('.game-type');
     const players = [...document.querySelectorAll('.player')];
 
     // PLACES CURRENT PLAYERS MARK WITH APPROPRIATE COLOR
-    function placeIconPlayer(e) {
+    function placeIconPlayer() {
         const activePlayerDiv = document.querySelector('.active');
         const activePlayerIcon =
             activePlayerDiv.querySelector('button').textContent;
-        const curSquare = this.querySelector('span');
-        const curRow = Number(curSquare.className.split(' ')[0].split('-')[1]);
-        const curColumn = Number(
-            curSquare.className.split(' ')[0].split('-')[2]
-        );
+        const activePlayerName =
+            activePlayerDiv.querySelector('span').textContent;
+        const curRow = Number(this.className.split(' ')[0].split('-')[1]);
+        const curColumn = Number(this.className.split(' ')[0].split('-')[2]);
 
-        curSquare.textContent = activePlayerIcon;
-        curSquare.style.color =
-            curSquare.textContent === 'X' ? '#fff' : '#C3073F';
+        this.textContent = activePlayerIcon;
+        this.style.color = this.textContent === 'X' ? '#fff' : '#C3073F';
 
         // UPDATES BOARD ARRAY
         myGameBoard.addMark(curRow, curColumn, activePlayerIcon);
+        // DISPLAYS THE WINNER TEXT IF THE GAME IS FINISHED
+        if (myGameBoard.checkWinner()) {
+            displayWinner(activePlayerName);
+        }
+
         switchPlayer();
-        console.log(myGameBoard.board);
-        console.log(myGameBoard.checkWinner());
     }
 
     function switchPlayer() {
         players.forEach((player) => player.classList.toggle('active'));
+    }
+
+    function displayWinner(name) {
+        const overlay = document.querySelector('.overlay');
+        const winnerText = document.querySelector('.winner-text');
+        const winnerIcon = myGameBoard.checkWinner();
+
+        overlay.classList.remove('hidden');
+        winnerText.textContent = `The winner is ${name} (${winnerIcon})`;
     }
 
     // SWITCHES GAME TYPE
@@ -61,4 +69,6 @@ function UI() {
     squares.forEach((square) =>
         square.addEventListener('click', placeIconPlayer)
     );
-}
+})();
+
+export default UI;

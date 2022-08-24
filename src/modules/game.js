@@ -1,6 +1,4 @@
-import UI from './UI.js';
-
-const gameBoard = function () {
+const gameBoard = (function () {
     let playerIcons = ['X', 'O'];
     const board = [
         ['', '', ''],
@@ -9,6 +7,7 @@ const gameBoard = function () {
     ];
 
     function switchIcons() {
+        console.log(myGameBoard.board);
         this.playerIcons =
             this.playerIcons[0] === 'X' ? ['O', 'X'] : ['X', 'O'];
     }
@@ -26,8 +25,10 @@ const gameBoard = function () {
                 this.board[row][0] === this.board[row][1] &&
                 this.board[row][0] === this.board[row][2]
             ) {
-                winner = this.board[row][0];
-                return winner;
+                if (this.board[row][0] !== '') {
+                    winner = this.board[row][0];
+                    return winner;
+                }
             }
         }
         // CHECKS EACH COLUMN
@@ -36,27 +37,36 @@ const gameBoard = function () {
                 this.board[0][col] === this.board[1][col] &&
                 this.board[0][col] === this.board[2][col]
             ) {
-                winner = this.board[0][col];
-                return winner;
+                if (this.board[0][col] !== '') {
+                    winner = this.board[0][col];
+                    return winner;
+                }
             }
         }
 
         // CHECKS DIAGONAL
-        if (this.board[0][0] === this.board[1][1] && this.board[2][2]) {
-            winner = this.board[0][0];
-            return winner;
+        if (
+            this.board[0][0] === this.board[1][1] &&
+            this.board[0][0] === this.board[2][2]
+        ) {
+            if (this.board[0][0] !== '') {
+                winner = this.board[0][0];
+                return winner;
+            }
         } else if (
             this.board[2][0] === this.board[1][1] &&
             this.board[2][0] === this.board[0][2]
         ) {
-            winner = this.board[2][0];
-            return winner;
+            if (this.board[2][0] !== '') {
+                winner = this.board[2][0];
+                return winner;
+            }
         }
 
-        return winner;
+        return undefined;
     }
 
     return { playerIcons, switchIcons, addMark, board, checkWinner };
-};
+})();
 
 export default gameBoard;
