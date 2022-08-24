@@ -17,7 +17,6 @@ const gameBoard = (function () {
 
     function checkWinner() {
         let winner;
-
         // CHECKS EACH ROW
         for (let row = 0; row < 3; row++) {
             if (
@@ -42,7 +41,6 @@ const gameBoard = (function () {
                 }
             }
         }
-
         // CHECKS DIAGONAL
         if (
             this.board[0][0] === this.board[1][1] &&
@@ -74,7 +72,23 @@ const gameBoard = (function () {
         return true;
     }
 
-    return { playerIcons, switchIcons, addMark, board, checkWinner, checkDraw };
+    function restartBoard() {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                this.board[row][col] = '';
+            }
+        }
+    }
+
+    return {
+        playerIcons,
+        switchIcons,
+        addMark,
+        board,
+        checkWinner,
+        checkDraw,
+        restartBoard,
+    };
 })();
 
 export default gameBoard;

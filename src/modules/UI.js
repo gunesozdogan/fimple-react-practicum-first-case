@@ -30,11 +30,11 @@ const UI = (function () {
             // DISPLAYS THE WINNER TEXT IF THE GAME IS FINISHED
             if (myGameBoard.checkWinner()) {
                 displayWinnerText(activePlayerName);
-
                 // DISPLAYS THE TIE MESSAGE IF ITS TIE
             } else if (myGameBoard.checkDraw()) {
                 overlay.classList.remove('hidden');
                 winnerText.textContent = 'The game is tie!';
+                // AI'S TURN
             } else if (gameType.includes('AI')) {
                 switchPlayer();
                 placeIconAI();
@@ -88,11 +88,7 @@ const UI = (function () {
         const player2 = document.querySelector('.player-2');
         player1.classList.add('active');
         player2.classList.remove('active');
-        for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 3; col++) {
-                myGameBoard.board[row][col] = '';
-            }
-        }
+        myGameBoard.restartBoard();
     }
 
     // SWITCHES GAME TYPE
