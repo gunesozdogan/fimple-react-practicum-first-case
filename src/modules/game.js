@@ -7,7 +7,6 @@ const gameBoard = (function () {
     ];
 
     function switchIcons() {
-        console.log(myGameBoard.board);
         this.playerIcons =
             this.playerIcons[0] === 'X' ? ['O', 'X'] : ['X', 'O'];
     }
@@ -62,11 +61,20 @@ const gameBoard = (function () {
                 return winner;
             }
         }
-
-        return undefined;
     }
 
-    return { playerIcons, switchIcons, addMark, board, checkWinner };
+    function checkDraw() {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (this.board[row][col] === '') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    return { playerIcons, switchIcons, addMark, board, checkWinner, checkDraw };
 })();
 
 export default gameBoard;
