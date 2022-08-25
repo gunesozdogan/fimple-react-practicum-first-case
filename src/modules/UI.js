@@ -56,7 +56,7 @@ const UI = (function () {
         } while (square.textContent !== '');
 
         square.textContent = iconAI;
-        square.style.color = '#C3073F';
+        square.style.color = iconAI === 'X' ? '#fff' : '#C3073F';
         myGameBoard.addMark(row, col, iconAI);
 
         // CHECKS IF AI WON
@@ -111,6 +111,8 @@ const UI = (function () {
 
         playerIcon1.textContent = myGameBoard.playerIcons[0];
         playerIcon2.textContent = myGameBoard.playerIcons[1];
+
+        restartGame();
     }
 
     // EVENT LISTENERS
