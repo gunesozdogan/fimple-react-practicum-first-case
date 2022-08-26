@@ -7,9 +7,13 @@ const UI = (function () {
     const gameTypeBtn = document.querySelector('.game-type');
     const players = [...document.querySelectorAll('.player')];
     const overlay = document.querySelector('.overlay');
-
+    let clicked = false;
     // PLACES CURRENT PLAYERS MARK WITH APPROPRIATE COLOR
     function placeIcon() {
+        // DISABLES CLICKING ON SQUARES WHILE ITS IN PROGRESS
+        if (clicked) return;
+        clicked = true;
+
         const activePlayerDiv = document.querySelector('.active');
         const activePlayerIcon =
             activePlayerDiv.querySelector('button').textContent;
@@ -23,8 +27,8 @@ const UI = (function () {
 
         // IF ITS EMPTY SQUARE
         if (this.textContent === '') {
-            this.textContent = activePlayerIcon;
-            this.style.color = this.textContent === 'X' ? '#fff' : '#C3073F';
+            renderIcon(this, activePlayerIcon);
+
             // UPDATES BOARD ARRAY
             myGameBoard.addMark(curRow, curColumn, activePlayerIcon);
             // DISPLAYS THE WINNER TEXT IF THE GAME IS FINISHED
@@ -37,9 +41,13 @@ const UI = (function () {
                 // AI'S TURN
             } else if (gameType.includes('AI')) {
                 switchPlayer();
-                placeIconAI();
+                return setTimeout(() => {
+                    placeIconAI();
+                    clicked = false;
+                }, 1000);
             }
             switchPlayer();
+            clicked = false;
         }
     }
 
@@ -55,14 +63,25 @@ const UI = (function () {
             square = document.querySelector(`.span-${row}-${col}`);
         } while (square.textContent !== '');
 
-        square.textContent = iconAI;
-        square.style.color = iconAI === 'X' ? '#fff' : '#C3073F';
+        renderIcon(square, iconAI);
         myGameBoard.addMark(row, col, iconAI);
 
         // CHECKS IF AI WON
         if (myGameBoard.checkWinner()) {
             displayWinnerText('AI');
+        } else {
+            switchPlayer();
         }
+    }
+
+    function renderIcon(element, icon) {
+        element.textContent = icon;
+        element.style.color = icon === 'X' ? '#FFF' : '#C3073F';
+        element.style.transform = 'scale(1.4)';
+        // SCALE ANIMATION
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+        }, 500);
     }
 
     function switchPlayer() {

@@ -135,6 +135,10 @@ span {
     font-size: 6rem;
 }
 
+.square span {
+    transition: transform 0.4s ease-in-out;
+}
+
 .winner-text {
     color: #fff;
     font-size: 4rem;
